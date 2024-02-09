@@ -40,6 +40,10 @@ app.post('/upload', upload.single('file'), (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("Upload file ready!");
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
