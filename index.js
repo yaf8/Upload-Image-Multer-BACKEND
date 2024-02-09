@@ -39,13 +39,15 @@ app.post('/upload', upload.single('file'), (req, res) => {
   // Access the uploaded file using req.file
   if (req.file) {
     // File uploaded successfully
-    console.log('File uploaded successfully : ' + req.file.originalname);
+    const uploadedFilePath = path.join(uploadDir, req.file.filename);
+    console.log('File uploaded successfully:', req.file.originalname);
+    console.log('Uploaded file directory:', uploadedFilePath);
     res.status(200).json({ message: 'File uploaded successfully' });
   } else {
     // No file was provided
     res.status(400).json({ message: 'No file provided' });
   }
-});
+})
 
 app.get("/download/:fileName", (req, res) => {
   const fileName = req.params.fileName;
